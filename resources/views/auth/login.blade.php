@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-sm-6 text-right">
                     <nav>
-                        <a href="{{ route('home') }}" class="btn btn-dark">Home</a>
+                        <a href="{{ route('landing') }}" class="btn btn-dark">Home</a>
 
                     </nav>
                 </div>
@@ -44,30 +44,26 @@
                     <div class="card card-outline">
 
                         <div class="card-body">
-                            <p class="login-box-msg">Login</p>
+                            <h4 class="login-box-msg"><b>Login</b></h4>
 
                             <form action="{{ route('login') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-
+                                    <label>Email</label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="far fa-user"></i></span>
-                                        </div>
-                                        <input type="email" name="email" class="form-control" placeholder="Email">
+
+                                        <input type="email" name="email" class="form-control">
                                     </div>
                                     @error('email')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-
+                                    <label>Password</label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                        </div>
+
                                         <input type="password" name="password" class="form-control"
-                                            style="border-right: none;" placeholder="Password" id="password">
+                                            style="border-right: none;" id="password">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text pass" id="togglePassword"><i
                                                     class="fas fa-eye"></i></span>
@@ -101,7 +97,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    @if (session('success_msg'))
+    @if (session('success'))
         <script>
             toastr.options = {
                 "closeButton": false,
@@ -120,11 +116,11 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             };
-            toastr.success("{{ session('success_msg') }}");
+            toastr.success("{{ session('success') }}");
         </script>
     @endif
 
-    @if (session('error_msg'))
+    @if (session('error'))
         <script>
             toastr.options = {
                 "closeButton": false,
@@ -143,7 +139,7 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             };
-            toastr.error("{{ session('error_msg') }}");
+            toastr.error("{{ session('error') }}");
         </script>
     @endif
 

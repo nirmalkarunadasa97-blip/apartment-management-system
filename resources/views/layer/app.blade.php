@@ -9,7 +9,6 @@
 
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
@@ -34,7 +33,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-@if (session('success_msg'))
+@if (session('success'))
     <script>
         toastr.options = {
             "closeButton": false,
@@ -53,10 +52,10 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         };
-        toastr.success("{{ session('success_msg') }}");
+        toastr.success("{{ session('success') }}");
     </script>
 @endif
-@if (session('error_msg'))
+@if (session('error'))
     <script>
         toastr.options = {
             "closeButton": false,
@@ -75,7 +74,7 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         };
-        toastr.error("{{ session('error_msg') }}");
+        toastr.error("{{ session('error') }}");
     </script>
 @endif
 
