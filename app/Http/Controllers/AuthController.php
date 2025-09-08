@@ -35,11 +35,11 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if (auth()->user()->user_role_id == 1) {
-                return redirect()->route('admindashboard.index');
+                return redirect()->route('addash.index');
             } elseif (auth()->user()->user_role_id == 2) {
-                return redirect()->route('staffdashboard.index');
+                return redirect()->route('staffdash.index');
             } elseif (auth()->user()->user_role_id == 3) {
-                return redirect()->route('advertisement_view.index');
+                return redirect()->route('resident.index');
             }
         }
 

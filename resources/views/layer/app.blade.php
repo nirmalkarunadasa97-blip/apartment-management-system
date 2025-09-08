@@ -19,11 +19,11 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     @if (auth()->user()->user_role_id == 1)
-        @include('layouts.parts.admin')
+        @include('layer.side.admin')
     @elseif(auth()->user()->user_role_id == 2)
-        @include('layouts.parts.staff')
+        @include('layer.side.staff')
     @elseif(auth()->user()->user_role_id == 3)
-        @include('layouts.parts.resident')
+        @include('layer.side.resident')
     @endif
 
     <div>

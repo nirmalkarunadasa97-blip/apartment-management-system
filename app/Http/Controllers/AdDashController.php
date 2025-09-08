@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdDashController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('home');
+        $adminCount = User::where('user_role_id', 1)->where('is_active', 1)->count();
+        $staffCount = User::where('user_role_id', 2)->where('is_active', 1)->count();
+        $residentCount = User::where('user_role_id', 3)->where('is_active', 1)->count();
+
+        return view('addash.index', compact(
+            'staffCount',
+            'adminCount',
+            'residentCount',
+        ));
     }
 
     /**

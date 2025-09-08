@@ -42,9 +42,7 @@
                 <div class="col-md-12">
 
                     <div class="card card-outline">
-                        <div class="card-header text-center">
-                            <h4><b> Apartment Management</b> </h4>
-                        </div>
+
                         <div class="card-body">
                             <p class="login-box-msg">Login</p>
 
@@ -87,9 +85,8 @@
                                     </div>
                                 </div>
                             </form>
-                            <hr>
-                            If you are a new Customer <a href="{{ route('register') }}">Register</a>
 
+                            Don’t have an account <a href="{{ route('register') }}">Register</a>
 
                         </div>
                     </div>

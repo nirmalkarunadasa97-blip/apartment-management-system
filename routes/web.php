@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdDashController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LanadinController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [LanadinController::class, 'index'])->name('home');
 
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -34,5 +35,5 @@ Route::post('/register/store', [RegisterController::class, 'store'])->name('regi
 
 
 Route::group(['middleware' => 'auth.role_id:1'], function () {
-    Route::resource('admindashboard', AdminDashboardController::class);
+    Route::resource('addash', AdDashController::class);
 });
