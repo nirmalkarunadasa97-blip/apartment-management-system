@@ -26,8 +26,7 @@
                 </div>
                 <div class="col-sm-6 text-right">
                     <nav>
-                        <a href="{{ route('home') }}" class="btn btn-dark">Home</a>
-
+                        <a href="{{ route('landing') }}" class="btn btn-dark">Home</a>
                     </nav>
                 </div>
             </div>
@@ -49,11 +48,8 @@
                                         <div class="form-group">
                                             <label>Name</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="far fa-user"></i></span>
-                                                </div>
                                                 <input type="text" name="name" class="form-control"
-                                                    value="{{ old('name') }}" placeholder="Full name">
+                                                    value="{{ old('name') }}">
                                             </div>
                                             @error('name')
                                                 <small class="text-danger">{{ $message }}</small>
@@ -64,69 +60,10 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Contact Number</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                                </div>
-                                                <input type="text" name="contact_number" class="form-control"
-                                                    value="{{ old('contact_number') }}" placeholder="Contact Number">
-                                            </div>
-                                            @error('contact_number')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>NIC Number</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="far fa-user"></i></span>
-                                                </div>
-                                                <input type="text" name="nic" class="form-control"
-                                                    value="{{ old('nic') }}" placeholder="NIC Number">
-                                            </div>
-                                            @error('nic')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Email</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i
-                                                            class="far fa-envelope"></i></span>
-                                                </div>
-                                                <input type="email" name="email" class="form-control"
-                                                    value="{{ old('email') }}"placeholder="Email">
-                                            </div>
-                                            @error('email')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
                                             <label>Address</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i
-                                                            class="fas fa-map-marker-alt"></i></span>
-                                                </div>
                                                 <input type="text" name="address" class="form-control"
-                                                    value="{{ old('address') }}" placeholder="Address">
+                                                    value="{{ old('address') }}">
                                             </div>
                                             @error('address')
                                                 <small class="text-danger">{{ $message }}</small>
@@ -139,14 +76,72 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label>NIC Number</label>
+                                            <div class="input-group">
+                                                <input type="text" name="nic" class="form-control"
+                                                    value="{{ old('nic') }}">
+                                            </div>
+                                            @error('nic')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="nic_copy">NIC Copy</label>
+                                            <div class="custom-file">
+                                                <input type="file" name="nic_copy" class="custom-file-input"
+                                                    id="customFile" accept="image/*" onchange="previewImage(this)">
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
+                                            @error('nic_copy')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                        <img id="imagePreview" src="" style="max-width: 200px">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Email Address</label>
+                                            <div class="input-group">
+                                                <input type="email" name="email" class="form-control"
+                                                    value="{{ old('email') }}">
+                                            </div>
+                                            @error('email')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Contact Number</label>
+                                            <div class="input-group">
+                                                <input type="text" name="contact_number" class="form-control"
+                                                    value="{{ old('contact_number') }}">
+                                            </div>
+                                            @error('contact_number')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <label>Password</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                                </div>
                                                 <input type="password" name="password" class="form-control"
-                                                    style="border-right: none;" placeholder="Password"
-                                                    id="password">
+                                                    style="border-right: none;" id="password">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text pass" id="togglePassword"><i
                                                             class="fas fa-eye"></i></span>
@@ -161,12 +156,9 @@
                                         <div class="form-group">
                                             <label>Confirm Password</label>
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                                </div>
                                                 <input type="password" name="password_confirmation"
                                                     class="form-control" style="border-right: none;"
-                                                    placeholder="Confirm Password" id="password_confirmation">
+                                                    id="password_confirmation">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text pass"
                                                         id="togglePasswordConfirmation"><i
@@ -185,8 +177,8 @@
                                         <button type="submit" class="btn btn-success btn-block">Register</button>
                                     </div>
                                 </div>
-                                <a href="{{ route('login') }}" class="text-center font-weight">I already
-                                    have an account</a>
+                                <a href="{{ route('login') }}" class="text-center font-weight">Existing user? Sign in
+                                    here</a>
 
                             </div>
                         </form>

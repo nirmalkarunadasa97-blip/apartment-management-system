@@ -30,7 +30,7 @@ class RegisterStoreRequest extends FormRequest
             'nic' => ['required', 'max:12'],
             'nic_copy' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'max:15'],
-            'contact_number' => ['required', 'string', 'regex:/^\+?[0-9]{10,14}$/'],
+            'contact_number' => ['required', 'string'],
             'password_confirmation' => ['required'],
         ];
     }
