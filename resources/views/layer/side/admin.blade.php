@@ -11,8 +11,8 @@
                     data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="{{ route('admindashboard.index') }}"
-                            class="nav-link {{ Request::routeIs('admindashboard.index') ? 'active' : '' }}">
+                        <a href="{{ route('addash.index') }}"
+                            class="nav-link {{ Request::routeIs('addash.index') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-home"></i>
                             <p>
                                 Dashboard

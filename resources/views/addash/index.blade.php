@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layer.app')
 
 @section('content')
     <div class="content-wrapper">
@@ -46,7 +46,7 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Resident</span>
                                 <span class="info-box-number">
-                                    {{ $tenantCount }}
+                                    {{ $residentCount }}
                                 </span>
                             </div>
                         </div>
