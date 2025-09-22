@@ -20,6 +20,22 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('apartments.index') }}"
+                            class="nav-link {{ Request::routeIs('apartments.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>
+                                Apartments
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin-users.create') }}" class="nav-link {{ Request::routeIs('admin-users.create') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-user-plus"></i>
+                            <p>Register User</p>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
                         <a href="{{ route('logout') }}" class="nav-link"

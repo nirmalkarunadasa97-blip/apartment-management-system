@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdDashController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LanadinController;
 use App\Http\Controllers\RegisterController;
@@ -33,6 +34,11 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register')
 Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
 
 
+use App\Http\Controllers\ApartmentController;
+
 Route::group(['middleware' => 'auth.role_id:1'], function () {
     Route::resource('addash', AdDashController::class);
+    Route::resource('apartments', ApartmentController::class);
+    Route::get('admin-users/create', [AdminUserController::class, 'create'])->name('admin-users.create');
+    Route::post('admin-users', [AdminUserController::class, 'store'])->name('admin-users.store');
 });
