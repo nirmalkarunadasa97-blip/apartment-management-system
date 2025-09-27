@@ -30,7 +30,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('apartment-applications.index') }}" class="nav-link {{ Request::routeIs('apartment-applications.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tools"></i>
                             <p>Apartment Applications</p>
@@ -70,10 +70,11 @@
                             <i class="nav-icon fas fa-key"></i>
                             <p>Change Password</p>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="nav-item">
-                        <a href="{{ route('admin-users.create') }}" class="nav-link {{ Request::routeIs('admin-users.create') ? 'active' : '' }}">
+                        <a href="{{ route('admin-users.create') }}"
+                            class="nav-link {{ Request::routeIs('admin-users.create') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-user-plus"></i>
                             <p>Register User</p>
                         </a>
