@@ -39,7 +39,7 @@ class AuthController extends Controller
             } elseif (auth()->user()->user_role_id == 2) {
                 return redirect()->route('staffdash.index');
             } elseif (auth()->user()->user_role_id == 3) {
-                return redirect()->route('resident.index');
+                return redirect()->route('resdash.index');
             }
         }
 
