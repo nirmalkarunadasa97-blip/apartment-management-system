@@ -14,7 +14,7 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::all();
-        return view('addash.apartments.index', compact('apartments'));
+        return view('apartments.index', compact('apartments'));
     }
 
     /**
@@ -22,7 +22,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('addash.apartments.create');
+        return view('apartments.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class ApartmentController extends Controller
     public function show(string $id)
     {
         $apartment = Apartment::findOrFail($id);
-        return view('addash.apartments.show', compact('apartment'));
+        return view('apartments.show', compact('apartment'));
     }
 
     /**
@@ -68,7 +68,7 @@ class ApartmentController extends Controller
     public function edit(string $id)
     {
         $apartment = Apartment::findOrFail($id);
-        return view('addash.apartments.edit', compact('apartment'));
+        return view('apartments.edit', compact('apartment'));
     }
 
     /**
