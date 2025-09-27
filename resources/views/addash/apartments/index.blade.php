@@ -20,44 +20,34 @@
             @if(session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Zip Code</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($apartments as $apartment)
-                    <tr>
-                        <td>{{ $apartment->name }}</td>
-                        <td>{{ $apartment->address }}</td>
-                        <td>{{ $apartment->city }}</td>
-                        <td>{{ $apartment->state }}</td>
-                        <td>{{ $apartment->zip_code }}</td>
-                        <td>{{ $apartment->description }}</td>
-                        <td>
-                            <a href="{{ route('apartments.edit', $apartment->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('apartments.destroy', $apartment->id) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this apartment?')">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @if($apartments->isEmpty())
-                    <tr>
-                        <td colspan="7" class="text-center">No apartments found.</td>
-                    </tr>
-                    @endif
-                </tbody>
-            </table>
+            <div class="row">
+                @foreach($apartments as $apartment)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        @if($apartment->photo)
+                            <img src="{{ asset('storage/' . $apartment->photo) }}" class="card-img-top" alt="Apartment Photo" style="height: 200px; object-fit: cover;">
+                        @else
+                            <img src="https://via.placeholder.com/400x300?text=No+Photo" class="card-img-top" alt="No Photo" style="height: 200px; object-fit: cover;">
+                        @endif
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $apartment->apartment_no }}</h5>
+                            <p class="card-text">
+                                <strong>Bedrooms:</strong> {{ $apartment->no_of_bedroom ?: 'N/A' }}<br>
+                                <strong>Bathrooms:</strong> {{ $apartment->no_of_bathroom ?: 'N/A' }}<br>
+                                <strong>Rent:</strong> ₹{{ number_format($apartment->monthly_rent ?? 0, 2) }}
+                            </p>
+                            <a href="#" class="btn btn-primary">Apply</a>
+                            <a href="{{ route('apartments.show', $apartment->id) }}" class="btn btn-secondary">More Details</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @if($apartments->isEmpty())
+                <div class="col-12">
+                    <p class="text-center">No apartments found.</p>
+                </div>
+                @endif
+            </div>
         </div>
     </section>
 </div>

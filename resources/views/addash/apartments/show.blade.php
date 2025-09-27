@@ -20,16 +20,25 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5>Name: {{ $apartment->name }}</h5>
-                    <p><strong>Address:</strong> {{ $apartment->address }}</p>
-                    <p><strong>City:</strong> {{ $apartment->city }}</p>
-                    <p><strong>State:</strong> {{ $apartment->state }}</p>
-                    <p><strong>Zip Code:</strong> {{ $apartment->zip_code }}</p>
+                    @if($apartment->photo)
+                        <img src="{{ asset('storage/' . $apartment->photo) }}" alt="Apartment Photo" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                    @else
+                        <img src="https://via.placeholder.com/400x300?text=No+Photo" alt="No Photo" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+                    @endif
+
+                    <h5>Apartment No: {{ $apartment->apartment_no }}</h5>
+                    <p><strong>Contact No:</strong> {{ $apartment->contact_no ?: 'N/A' }}</p>
+                    <p><strong>Number of Bedrooms:</strong> {{ $apartment->no_of_bedroom ?: 'N/A' }}</p>
+                    <p><strong>Number of Bathrooms:</strong> {{ $apartment->no_of_bathroom ?: 'N/A' }}</p>
+                    <p><strong>Monthly Rent:</strong> ₹{{ number_format($apartment->monthly_rent ?? 0, 2) }}</p>
                     <p><strong>Description:</strong> {{ $apartment->description ?: 'N/A' }}</p>
+                    <p><strong>Status:</strong> {{ $apartment->status ?: 'N/A' }}</p>
                     <p><strong>Created At:</strong> {{ $apartment->created_at->format('Y-m-d H:i:s') }}</p>
                     <p><strong>Updated At:</strong> {{ $apartment->updated_at->format('Y-m-d H:i:s') }}</p>
                 </div>
             </div>
+
+
         </div>
     </section>
 </div>

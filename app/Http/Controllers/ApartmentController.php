@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Apartment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -30,15 +31,24 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string',
-            'city' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'zip_code' => 'required|string|max:10',
+            'contact_no' => 'nullable|string|max:255',
+            'no_of_bedroom' => 'nullable|integer|min:0',
+            'no_of_bathroom' => 'nullable|integer|min:0',
+            'apartment_no' => 'required|string|max:255',
+            'monthly_rent' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
+            'status' => 'nullable|string|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        Apartment::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('apartments', 'public');
+            $data['photo'] = $photoPath;
+        }
+
+        Apartment::create($data);
 
         return redirect()->route('apartments.index')->with('success', 'Apartment created successfully.');
     }
@@ -67,16 +77,28 @@ class ApartmentController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string',
-            'city' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'zip_code' => 'required|string|max:10',
+            'contact_no' => 'nullable|string|max:255',
+            'no_of_bedroom' => 'nullable|integer|min:0',
+            'no_of_bathroom' => 'nullable|integer|min:0',
+            'apartment_no' => 'required|string|max:255',
+            'monthly_rent' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
+            'status' => 'nullable|string|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $apartment = Apartment::findOrFail($id);
-        $apartment->update($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('photo')) {
+            if ($apartment->photo) {
+                Storage::disk('public')->delete($apartment->photo);
+            }
+            $photoPath = $request->file('photo')->store('apartments', 'public');
+            $data['photo'] = $photoPath;
+        }
+
+        $apartment->update($data);
 
         return redirect()->route('apartments.index')->with('success', 'Apartment updated successfully.');
     }

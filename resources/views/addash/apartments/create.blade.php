@@ -16,31 +16,39 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('apartments.store') }}" method="POST">
+                    <form action="{{ route('apartments.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <label for="contact_no">Contact No</label>
+                            <input type="text" class="form-control" id="contact_no" name="contact_no">
                         </div>
                         <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea class="form-control" id="address" name="address" required></textarea>
+                            <label for="no_of_bedroom">Number of Bedrooms</label>
+                            <input type="number" class="form-control" id="no_of_bedroom" name="no_of_bedroom" min="0">
                         </div>
                         <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" required>
+                            <label for="no_of_bathroom">Number of Bathrooms</label>
+                            <input type="number" class="form-control" id="no_of_bathroom" name="no_of_bathroom" min="0">
                         </div>
                         <div class="form-group">
-                            <label for="state">State</label>
-                            <input type="text" class="form-control" id="state" name="state" required>
+                            <label for="apartment_no">Apartment No</label>
+                            <input type="text" class="form-control" id="apartment_no" name="apartment_no" required>
                         </div>
                         <div class="form-group">
-                            <label for="zip_code">Zip Code</label>
-                            <input type="text" class="form-control" id="zip_code" name="zip_code" required>
+                            <label for="monthly_rent">Monthly Rent</label>
+                            <input type="number" step="0.01" class="form-control" id="monthly_rent" name="monthly_rent" min="0">
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <input type="text" class="form-control" id="status" name="status">
+                        </div>
+                        <div class="form-group">
+                            <label for="photo">Photo</label>
+                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
                         </div>
                         <button type="submit" class="btn btn-primary">Create Apartment</button>
                         <a href="{{ route('apartments.index') }}" class="btn btn-secondary">Cancel</a>

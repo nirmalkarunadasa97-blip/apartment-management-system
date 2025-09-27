@@ -10,11 +10,13 @@ class Apartment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'address',
-        'city',
-        'state',
-        'zip_code',
+        'contact_no',
+        'no_of_bedroom',
+        'no_of_bathroom',
+        'apartment_no',
+        'monthly_rent',
         'description',
+        'status',
+        'photo',
     ];
 }
