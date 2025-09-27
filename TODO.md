@@ -1,0 +1,15 @@
+-   [x] Update app/Models/Apartment.php fillable fields to: contact_no, no_of_bedroom, no_of_bathroom, apartment_no, monthly_rent, description, status
+-   [x] Create new migration to alter apartments table: drop name, address, city, state, zip_code; add contact_no (string), no_of_bedroom (integer), no_of_bathroom (integer), apartment_no (string), status (string)
+-   [x] Run the new migration
+-   [x] Update ApartmentController store and update validations and methods
+-   [x] Update create.blade.php form fields
+-   [x] Update edit.blade.php form fields
+-   [x] Update show.blade.php display fields
+-   [x] Update index.blade.php table headers and data
+-   [ ] Create migration for photo column
+-   [ ] Run migration
+-   [ ] Update model fillable for photo
+-   [ ] Update controller for file upload
+-   [ ] Update create and edit views for file input
+-   [ ] Update show and index views to display photo
+-   [ ] Run storage:link
