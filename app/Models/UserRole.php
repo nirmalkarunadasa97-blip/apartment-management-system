@@ -10,10 +10,10 @@ class UserRole extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'user_role_id';
+
     protected $fillable = [
-        'name',
-        'display_name',
-        'description',
+        'title',
     ];
 
     /**
