@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Change Password</h1>
+                        <h1>Update Password</h1>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label>Password</label>
+                                                <label>New Password</label>
                                                 <div class="input-group">
 
                                                     <input type="password" name="password" class="form-control"
