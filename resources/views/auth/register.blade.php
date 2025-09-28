@@ -5,19 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Apartment management</title>
-    <link href="{{ asset('apartmentcss.css') }}" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     @stack('styles')
 </head>
 
 <body class="hold-transition">
-    <section class="content-header background-color">
+    <section class="content-header" style="background-color: #f4efb7">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -32,10 +28,10 @@
             </div>
         </div>
     </section>
-    <div class="log"
+    <div class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light"
         style="background: url('{{ asset('assets/img/reg.jpeg') }}') no-repeat center center fixed;
              background-size: cover;">
-        <div class="register-box">
+        <div class="register-box container" style="width: 100% !important">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
