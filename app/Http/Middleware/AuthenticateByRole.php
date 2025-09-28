@@ -20,6 +20,6 @@ class AuthenticateByRole
         if (auth()->check() && in_array(auth()->user()->user_role_id, explode("||", $role_id))) {
             return $next($request);
         }
-        return redirect()->route('home')->with('error_msg', 'Unauthorized Access!');
+        return redirect()->route('landing')->with('error_msg', 'Unauthorized Access!');
     }
 }

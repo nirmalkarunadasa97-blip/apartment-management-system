@@ -6,6 +6,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LanadinController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ResidentDashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,36 +37,15 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register')
 Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
 
 
-use App\Http\Controllers\ApartmentController;
-
 Route::group(['middleware' => 'auth.role_id:1'], function () {
     Route::resource('addash', AdDashController::class);
     Route::resource('apartments', ApartmentController::class);
 
-    Route::get('/apartment-applications', function () {
-        return view('addash.maintenance.index');
-    })->name('apartment-applications.index');
-
-    Route::get('/maintenance', function () {
-        return view('addash.maintenance.maintenance');
-    })->name('maintenance.index');
-
-    Route::get('/payments', function () {
-        return view('addash.payments.index');
-    })->name('payments.index');
-
-    Route::get('/chats', function () {
-        return view('addash.chats.index');
-    })->name('chats.index');
-
-    Route::get('/profile', function () {
-        return view('addash.profile.index');
-    })->name('profile.index');
-
-    Route::get('/change-password', function () {
-        return view('addash.change-password.index');
-    })->name('change-password.index');
-
     Route::get('admin-users/create', [AdminUserController::class, 'create'])->name('admin-users.create');
     Route::post('admin-users', [AdminUserController::class, 'store'])->name('admin-users.store');
+});
+
+Route::group(['middleware' => 'auth.role_id:3'], function () {
+    Route::resource('resdash', ResidentDashController::class);
+    Route::resource('change_password', ChangePasswordController::class);
 });

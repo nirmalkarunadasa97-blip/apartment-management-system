@@ -17,7 +17,7 @@ class AdminUserController extends Controller
     {
         // Get roles for dropdown (admin and staff)
         $roles = UserRole::whereIn('name', ['admin', 'staff'])->get();
-        return view('addash.users.create', compact('roles'));
+        return view('users.create', compact('roles'));
     }
 
     /**
