@@ -48,7 +48,7 @@
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label>Password</label>
+                                                <label>New Password</label>
                                                 <div class="input-group">
 
                                                     <input type="password" name="password" class="form-control"
