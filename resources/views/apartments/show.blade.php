@@ -20,10 +20,16 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    @if($apartment->photo)
-                        <img src="{{ asset('storage/' . $apartment->photo) }}" alt="Apartment Photo" style="max-width: 60%; height: auto; margin-bottom: 20px;">
+                    @if($apartment->images->count() > 0)
+                        <div class="row">
+                            @foreach($apartment->images as $image)
+                                <div class="col-md-4 mb-3">
+                                    <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $image->image_name }}" style="max-width: 100%; height: 200px; object-fit: cover;">
+                                </div>
+                            @endforeach
+                        </div>
                     @else
-                        <img src="https://via.placeholder.com/400x300?text=No+Photo" alt="No Photo" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+                        <img src="https://via.placeholder.com/400x300?text=No+Images" alt="No Images" style="max-width: 100%; height: auto; margin-bottom: 20px;">
                     @endif
 
                     <h5>Apartment No: {{ $apartment->apartment_no }}</h5>

@@ -43,12 +43,9 @@
                             <textarea class="form-control" id="description" name="description"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <input type="text" class="form-control" id="status" name="status">
-                        </div>
-                        <div class="form-group">
-                            <label for="photo">Photo</label>
-                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                            <label for="images">Images</label>
+                            <input type="file" class="form-control" id="images" name="images[]" accept="image/*" multiple required>
+                            <small class="form-text text-muted">You can select multiple images.</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Create Apartment</button>
                         <a href="{{ route('apartments.index') }}" class="btn btn-secondary">Cancel</a>

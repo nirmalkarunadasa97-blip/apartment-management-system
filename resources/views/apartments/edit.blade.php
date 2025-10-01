@@ -44,17 +44,19 @@
                             <textarea class="form-control" id="description" name="description">{{ $apartment->description }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" value="{{ $apartment->status ?? '' }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="photo">Photo</label>
-                            @if($apartment->photo)
-                                <img src="{{ asset('storage/' . $apartment->photo) }}" alt="Current Photo" style="max-width: 200px; margin-bottom: 10px;">
-                                <br>
+                            <label for="images">Images</label>
+                            @if($apartment->images->count() > 0)
+                                <div class="row">
+                                    @foreach($apartment->images as $image)
+                                        <div class="col-md-3 mb-3">
+                                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $image->image_name }}" style="max-width: 100%; height: 150px; object-fit: cover;">
+                                            <p>{{ $image->image_name }}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
                             @endif
-                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
-                            <small class="form-text text-muted">Leave empty to keep current photo.</small>
+                            <input type="file" class="form-control" id="images" name="images[]" accept="image/*" multiple>
+                            <small class="form-text text-muted">Select additional images to add. Existing images will be kept.</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Update Apartment</button>
                         <a href="{{ route('apartments.index') }}" class="btn btn-secondary">Cancel</a>

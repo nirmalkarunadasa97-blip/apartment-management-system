@@ -1,15 +1,36 @@
--   [x] Update app/Models/Apartment.php fillable fields to: contact_no, no_of_bedroom, no_of_bathroom, apartment_no, monthly_rent, description, status
--   [x] Create new migration to alter apartments table: drop name, address, city, state, zip_code; add contact_no (string), no_of_bedroom (integer), no_of_bathroom (integer), apartment_no (string), status (string)
--   [x] Run the new migration
--   [x] Update ApartmentController store and update validations and methods
--   [x] Update create.blade.php form fields
--   [x] Update edit.blade.php form fields
--   [x] Update show.blade.php display fields
--   [x] Update index.blade.php table headers and data
--   [ ] Create migration for photo column
--   [ ] Run migration
--   [ ] Update model fillable for photo
--   [ ] Update controller for file upload
--   [ ] Update create and edit views for file input
--   [ ] Update show and index views to display photo
--   [ ] Run storage:link
+# Apartment Images Fix Plan
+
+## Information Gathered
+
+-   ApartmentController handles multiple images upload and stores them in the apartment_images table.
+-   Apartment model has a relationship with ApartmentImage model via images().
+-   ApartmentImage model stores image_path, image_name, and order.
+-   Views (create, edit, show, index) currently use a single "photo" attribute from the apartments table, but the controller stores multiple images in apartment_images table.
+-   Mismatch between single photo display and multiple images storage causes images not to work as intended.
+
+## Plan
+
+-   Update Apartment model to include "photo" in fillable if needed for backward compatibility, but prioritize multiple images.
+-   Update create.blade.php to allow multiple image uploads (name="images[]" multiple).
+-   Update edit.blade.php to display existing multiple images and allow adding more.
+-   Update show.blade.php to display all images from the images relationship.
+-   Update index.blade.php to display the first image or a representative image from the images relationship.
+-   Update ApartmentController to handle both single photo (if kept) and multiple images, but focus on multiple.
+-   Add image deletion functionality in edit view if needed.
+
+## Dependent Files to Edit
+
+-   app/Models/Apartment.php
+-   app/Http/Controllers/ApartmentController.php
+-   resources/views/apartments/create.blade.php
+-   resources/views/apartments/edit.blade.php
+-   resources/views/apartments/show.blade.php
+-   resources/views/apartments/index.blade.php
+
+## Followup Steps
+
+-   Test image upload in create form.
+-   Test image display in index, show views.
+-   Test adding more images in edit form.
+-   Ensure storage link is set up for public disk.
+-   Check for any errors in console or logs.

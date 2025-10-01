@@ -17,6 +17,10 @@ class Apartment extends Model
         'monthly_rent',
         'description',
         'status',
-        'photo',
     ];
+
+    public function images()
+    {
+        return $this->hasMany(ApartmentImage::class);
+    }
 }

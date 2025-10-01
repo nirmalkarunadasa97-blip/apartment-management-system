@@ -24,10 +24,10 @@
                 @foreach($apartments as $apartment)
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        @if($apartment->photo)
-                            <img src="{{ asset('storage/' . $apartment->photo) }}" class="card-img-top" alt="Apartment Photo" style="height: 200px; object-fit: cover;">
+                        @if($apartment->images->count() > 0)
+                            <img src="{{ asset('storage/' . $apartment->images->first()->image_path) }}" class="card-img-top" alt="Apartment Photo" style="height: 200px; object-fit: cover;">
                         @else
-                            <img src="https://via.placeholder.com/400x300?text=No+Photo" class="card-img-top" alt="No Photo" style="height: 200px; object-fit: cover;">
+                            <img src="https://via.placeholder.com/400x300?text=No+Images" class="card-img-top" alt="No Images" style="height: 200px; object-fit: cover;">
                         @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $apartment->apartment_no }}</h5>

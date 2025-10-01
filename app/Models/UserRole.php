@@ -13,7 +13,7 @@ class UserRole extends Model
     protected $primaryKey = 'user_role_id';
 
     protected $fillable = [
-        'title',
+        'user_role',
     ];
 
     /**

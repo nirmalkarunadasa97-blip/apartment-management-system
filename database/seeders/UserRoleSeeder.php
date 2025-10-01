@@ -17,17 +17,17 @@ class UserRoleSeeder extends Seeder
         // Create user roles
         $roles = [
             [
-                'title' => 'admin',
+                'user_role' => 'admin',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'staff',
+                'user_role' => 'staff',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'tenant',
+                'user_role' => 'resident',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -36,9 +36,9 @@ class UserRoleSeeder extends Seeder
         DB::table('user_roles')->insert($roles);
 
         // Get role IDs for user creation
-        $adminRoleId = DB::table('user_roles')->where('title', 'admin')->first()->user_role_id;
-        $staffRoleId = DB::table('user_roles')->where('title', 'staff')->first()->user_role_id;
-        $tenantRoleId = DB::table('user_roles')->where('title', 'tenant')->first()->user_role_id;
+        $adminRoleId = DB::table('user_roles')->where('user_role', 'admin')->first()->user_role_id;
+        $staffRoleId = DB::table('user_roles')->where('user_role', 'staff')->first()->user_role_id;
+        $tenantRoleId = DB::table('user_roles')->where('user_role', 'resident')->first()->user_role_id;
 
         // Create default admin user
         DB::table('users')->insert([
@@ -62,10 +62,10 @@ class UserRoleSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // Create test tenant user
+        // Create test resident user
         DB::table('users')->insert([
-            'name' => 'Jane Tenant',
-            'email' => 'tenant@test.com',
+            'name' => 'Jane Resident',
+            'email' => 'resident@test.com',
             'password' => Hash::make('password'),
             'is_active' => 1,
             'user_role_id' => $tenantRoleId,

@@ -13,7 +13,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::with('images')->get();
         return view('apartments.index', compact('apartments'));
     }
 
@@ -37,18 +37,23 @@ class ApartmentController extends Controller
             'apartment_no' => 'required|string|max:255',
             'monthly_rent' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
-            'status' => 'nullable|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->all();
+        $data = $request->only(['contact_no', 'no_of_bedroom', 'no_of_bathroom', 'apartment_no', 'monthly_rent', 'description']) + ['status' => 1];
 
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('apartments', 'public');
-            $data['photo'] = $photoPath;
+        $apartment = Apartment::create($data);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('apartments', 'public');
+                $apartment->images()->create([
+                    'image_path' => $imagePath,
+                    'image_name' => $image->getClientOriginalName(),
+                ]);
+            }
         }
-
-        Apartment::create($data);
 
         return redirect()->route('apartments.index')->with('success', 'Apartment created successfully.');
     }
@@ -58,7 +63,7 @@ class ApartmentController extends Controller
      */
     public function show(string $id)
     {
-        $apartment = Apartment::findOrFail($id);
+        $apartment = Apartment::with('images')->findOrFail($id);
         return view('apartments.show', compact('apartment'));
     }
 
@@ -67,7 +72,7 @@ class ApartmentController extends Controller
      */
     public function edit(string $id)
     {
-        $apartment = Apartment::findOrFail($id);
+        $apartment = Apartment::with('images')->findOrFail($id);
         return view('apartments.edit', compact('apartment'));
     }
 
@@ -83,22 +88,24 @@ class ApartmentController extends Controller
             'apartment_no' => 'required|string|max:255',
             'monthly_rent' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
-            'status' => 'nullable|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $apartment = Apartment::findOrFail($id);
-        $data = $request->all();
-
-        if ($request->hasFile('photo')) {
-            if ($apartment->photo) {
-                Storage::disk('public')->delete($apartment->photo);
-            }
-            $photoPath = $request->file('photo')->store('apartments', 'public');
-            $data['photo'] = $photoPath;
-        }
+        $data = $request->only(['contact_no', 'no_of_bedroom', 'no_of_bathroom', 'apartment_no', 'monthly_rent', 'description']);
 
         $apartment->update($data);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('apartments', 'public');
+                $apartment->images()->create([
+                    'image_path' => $imagePath,
+                    'image_name' => $image->getClientOriginalName(),
+                ]);
+            }
+        }
 
         return redirect()->route('apartments.index')->with('success', 'Apartment updated successfully.');
     }
