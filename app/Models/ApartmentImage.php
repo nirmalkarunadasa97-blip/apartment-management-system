@@ -9,11 +9,11 @@ class ApartmentImage extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'apartment_image_id';
+
     protected $fillable = [
         'apartment_id',
-        'image_path',
-        'image_name',
-        'order',
+        'image_url',
     ];
 
     public function apartment()

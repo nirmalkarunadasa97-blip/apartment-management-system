@@ -8,6 +8,7 @@ use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResidentDashController;
 
 /*
@@ -48,4 +49,5 @@ Route::group(['middleware' => 'auth.role_id:1'], function () {
 Route::group(['middleware' => 'auth.role_id:3'], function () {
     Route::resource('resdash', ResidentDashController::class);
     Route::resource('change_password', ChangePasswordController::class);
+    Route::resource('profile_update', ProfileController::class);
 });

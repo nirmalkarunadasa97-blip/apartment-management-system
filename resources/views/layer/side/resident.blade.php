@@ -23,9 +23,19 @@
                     <li class="nav-item">
                         <a href="{{ route('change_password.edit', ['change_password' => auth()->user()->id]) }}"
                             class="nav-link {{ Request::routeIs('change_password.*') ? 'active' : '' }}">
-                            <i class="nav-icon fab fa-500px"></i>
+                            <i class="fab fa-asymmetrik"></i>
                             <p>
                                 Change Password
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('profile_update.edit', ['profile_update' => auth()->user()->id]) }}"
+                            class="nav-link {{ Request::routeIs('profile_update.*') ? 'active' : '' }}">
+                            <i class="fab fa-audible"></i>
+                            <p>
+                                Update Profile
                             </p>
                         </a>
                     </li>
