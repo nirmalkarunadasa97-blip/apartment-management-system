@@ -14,11 +14,15 @@ return new class extends Migration
     {
         Schema::table('user_roles', function (Blueprint $table) {
             $table->renameColumn('id', 'user_role_id');
-            $table->string('title');
-            $table->dropColumn(['name', 'display_name', 'description']);
+            $table->string('user_role')->nullable();
         });
 
-        DB::statement('UPDATE user_roles SET title = name');
+        DB::statement('UPDATE user_roles SET user_role = name');
+
+        Schema::table('user_roles', function (Blueprint $table) {
+            $table->dropColumn(['name', 'display_name', 'description']);
+            $table->string('user_role')->nullable(false)->change();
+        });
     }
 
     /**
@@ -27,13 +31,16 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('user_roles', function (Blueprint $table) {
-            $table->renameColumn('user_role_id', 'id');
             $table->string('name');
             $table->string('display_name');
             $table->text('description')->nullable();
-            $table->dropColumn('title');
         });
 
-        DB::statement('UPDATE user_roles SET name = title, display_name = title, description = NULL');
+        DB::statement('UPDATE user_roles SET name = user_role, display_name = user_role, description = NULL');
+
+        Schema::table('user_roles', function (Blueprint $table) {
+            $table->dropColumn('user_role');
+            $table->renameColumn('user_role_id', 'id');
+        });
     }
 };

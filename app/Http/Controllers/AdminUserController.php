@@ -16,7 +16,7 @@ class AdminUserController extends Controller
     public function create()
     {
         // Get roles for dropdown (admin and staff)
-        $roles = UserRole::whereIn('name', ['admin', 'staff'])->get();
+        $roles = UserRole::whereIn('user_role', ['admin', 'staff'])->get();
         return view('users.create', compact('roles'));
     }
 
@@ -28,7 +28,7 @@ class AdminUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'user_role_id' => 'required|exists:user_roles,id',
+            'user_role_id' => 'required|exists:user_roles,user_role_id',
         ]);
 
         // Auto-generate password
