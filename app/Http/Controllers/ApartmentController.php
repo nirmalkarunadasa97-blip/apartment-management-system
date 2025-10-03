@@ -61,9 +61,9 @@ class ApartmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $apartment_id)
     {
-        $apartment = Apartment::with('images')->findOrFail($id);
+        $apartment = Apartment::with('images')->findOrFail($apartment_id);
         return view('apartments.show', compact('apartment'));
     }
 

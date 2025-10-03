@@ -9,6 +9,8 @@ class Apartment extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'apartment_id';
+
     protected $fillable = [
         'contact_no',
         'no_of_bedroom',
