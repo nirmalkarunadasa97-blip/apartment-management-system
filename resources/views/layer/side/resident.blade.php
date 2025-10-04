@@ -20,6 +20,25 @@
                         </a>
                     </li>
 
+
+                    @php
+                        $hasApartmentApplication = \App\Models\ApartmentApplication::where('resident_id', auth()->id())
+                            ->where('status', 2)
+                            ->exists();
+                    @endphp
+
+                    @if ($hasApartmentApplication)
+                        <li class="nav-item">
+                            <a href="{{ route('maintenance.index') }}"
+                                class="nav-link {{ Request::routeIs('maintenance.index') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>
+                                    Maintenance
+                                </p>
+                            </a>
+                        </li>
+                    @endif
+
                     <li class="nav-item">
                         <a href="{{ route('change_password.edit', ['change_password' => auth()->user()->id]) }}"
                             class="nav-link {{ Request::routeIs('change_password.*') ? 'active' : '' }}">
