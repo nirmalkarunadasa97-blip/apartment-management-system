@@ -30,6 +30,16 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('admin_maintenance.index') }}"
+                            class="nav-link {{ Request::routeIs('admin_maintenance.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-wrench"></i>
+                            <p>
+                                Maintenance Request
+                            </p>
+                        </a>
+                    </li>
+
                     {{-- <li class="nav-item">
                         <a href="{{ route('apartment-applications.index') }}" class="nav-link {{ Request::routeIs('apartment-applications.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tools"></i>
