@@ -35,7 +35,7 @@
         </div>
     </section>
 
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-5" style="padding-bottom: 80px;">
         <div class="row">
             <div class="col-lg-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -80,12 +80,12 @@
         </div>
     </div>
 
-    <section class="content-footer bg-dark">
+    <section class="content-footer bg-dark text-white"
+        style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1000;">
         <div class="container-fluid py-3">
-            <footer class="main">
-                <div class="text-center">
-                    <strong>Copyright &copy; 2025 Apartment Management System</strong> All rights reserved.
-                </div>
+            <footer class="main text-center">
+                <strong>Copyright &copy; 2025 Apartment Management System</strong>
+                All rights reserved.
             </footer>
         </div>
     </section>

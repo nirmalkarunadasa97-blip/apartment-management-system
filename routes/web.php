@@ -11,6 +11,7 @@ use App\Http\Controllers\ApartmentController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResidentDashController;
 
 /*
@@ -46,6 +47,7 @@ Route::group(['middleware' => 'auth.role_id:1'], function () {
 
     Route::get('admin-users/create', [AdminUserController::class, 'create'])->name('admin-users.create');
     Route::post('admin-users', [AdminUserController::class, 'store'])->name('admin-users.store');
+    Route::resource('report', ReportController::class);
 });
 
 Route::group(['middleware' => 'auth.role_id:3'], function () {
