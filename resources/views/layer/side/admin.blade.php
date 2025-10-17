@@ -40,7 +40,6 @@
                         </a>
                     </li>
 
-
                     <li class="nav-item">
                         <a href="{{ route('admin-users.create') }}"
                             class="nav-link {{ Request::routeIs('admin-users.create') ? 'active' : '' }}">
@@ -49,10 +48,28 @@
                         </a>
                     </li>
 
+                    <!-- NEW TAB 1: Residents -->
+                    <li class="nav-item">
+                        <a href="{{ route('resdash.index') }}"
+                            class="nav-link {{ Request::routeIs('resdash.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Residents</p>
+                        </a>
+                    </li>
+
+                    <!-- NEW TAB 2: Announcements -->
+                    <li class="nav-item">
+                        <a href="{{ route('announcements.index') }}"
+                            class="nav-link {{ Request::routeIs('announcements.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-bullhorn"></i>
+                            <p>Announcements</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('report.index') }}"
                             class="nav-link {{ Request::routeIs('report.index') ? 'active' : '' }}">
-                            <i class="fas fa-atlas"></i>
+                            <i class="nav-icon fas fa-atlas"></i>
                             <p>Report</p>
                         </a>
                     </li>

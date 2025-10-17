@@ -1,66 +1,300 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Apartment Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive web-based application built with Laravel for managing apartment complexes, residents, maintenance requests, and administrative operations.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### For Administrators
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   **Dashboard**: Overview of system statistics and recent activities
+-   **User Management**: Create and manage staff and resident accounts
+-   **Apartment Management**: Add, edit, and manage apartment listings with images
+-   **Maintenance Oversight**: View and manage all maintenance requests
+-   **Reports**: Generate and view system reports
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### For Staff
 
-## Learning Laravel
+-   **Maintenance Management**: Update maintenance request status to completed
+-   **Apartment Oversight**: Access to apartment information and maintenance tracking
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### For Residents
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **Dashboard**: Personal dashboard with quick access to features
+-   **Profile Management**: Update personal information and change password
+-   **Maintenance Requests**: Submit and track maintenance requests
+-   **Apartment Information**: View apartment details and status
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Technology Stack
 
-## Laravel Sponsors
+-   **Backend**: Laravel 10.x
+-   **Frontend**: Blade Templates, AdminLTE 3.2, Bootstrap
+-   **Database**: MySQL (via Doctrine DBAL)
+-   **Authentication**: Laravel Sanctum
+-   **JavaScript**: jQuery, Toastr notifications
+-   **Styling**: AdminLTE, Custom CSS
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Requirements
 
-### Premium Partners
+-   PHP 8.1 or higher
+-   Composer
+-   Node.js and npm (for frontend assets)
+-   MySQL database
+-   Web server (Apache/Nginx)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Installation
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone <repository-url>
+    cd apartment-management-system
+    ```
+
+2. **Install PHP dependencies:**
+
+    ```bash
+    composer install
+    ```
+
+3. **Install Node.js dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+4. **Environment Configuration:**
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    Configure your database and other environment variables in `.env`
+
+5. **Generate application key:**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6. **Database Setup:**
+
+    ```bash
+    php artisan migrate
+    php artisan db:seed
+    ```
+
+7. **Build frontend assets:**
+
+    ```bash
+    npm run build
+    # or for development
+    npm run dev
+    ```
+
+8. **Start the development server:**
+    ```bash
+    php artisan serve
+    ```
+
+## Database Seeding
+
+The application includes seeders for initial data:
+
+-   **User Roles**: Admin, Staff, Resident
+-   **Default Users**:
+    -   Admin: `admin@apartment.com` / `password`
+    -   Staff: `staff@test.com` / `password`
+    -   Resident: `resident@test.com` / `password`
+
+## Usage
+
+### Accessing the Application
+
+1. Visit the landing page at `/`
+2. Click "Resident Register" to create a new resident account
+3. Or click "Login" to access existing accounts
+
+### User Roles and Permissions
+
+-   **Admin (Role ID: 1)**: Full system access
+-   **Staff (Role ID: 2)**: Maintenance management access
+-   **Resident (Role ID: 3)**: Personal dashboard and maintenance requests
+
+## Project Structure
+
+```
+apartment-management-system/
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── apartment-management.sql
+├── artisan
+├── composer.json
+├── composer.lock
+├── package-lock.json
+├── package.json
+├── phpunit.xml
+├── README.md
+├── TODO.md
+├── vite.config.js
+├── app/
+│   ├── Console/
+│   │   └── Kernel.php
+│   ├── Exceptions/
+│   │   └── Handler.php
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── AdDashController.php
+│   │   │   ├── AdminMaintenanceController.php
+│   │   │   ├── AdminUserController.php
+│   │   │   ├── ApartmentController.php
+│   │   │   ├── AuthController.php
+│   │   │   ├── ChangePasswordController.php
+│   │   │   ├── Controller.php
+│   │   │   ├── LanadinController.php
+│   │   │   ├── MaintenanceController.php
+│   │   │   ├── ProfileController.php
+│   │   │   ├── RegisterController.php
+│   │   │   ├── ReportController.php
+│   │   │   └── ResidentDashController.php
+│   │   ├── Kernel.php
+│   │   ├── Middleware/
+│   │   │   ├── Authenticate.php
+│   │   │   ├── AuthenticateByRole.php
+│   │   │   ├── EncryptCookies.php
+│   │   │   ├── PreventRequestsDuringMaintenance.php
+│   │   │   ├── RedirectIfAuthenticated.php
+│   │   │   ├── TrimStrings.php
+│   │   │   ├── TrustHosts.php
+│   │   │   └── VerifyCsrfToken.php
+│   │   └── Requests/
+│   │       ├── AdminMaintenanceRequest.php
+│   │       ├── MaintenanRequest.php
+│   │       ├── PasswordUpdateRequest.php
+│   │       ├── RegisterStoreRequest.php
+│   │       └── UpdateProfileRequest.php
+│   └── Models/
+│       ├── Apartment.php
+│       ├── ApartmentApplication.php
+│       ├── ApartmentImage.php
+│       ├── Maintenance.php
+│       ├── MaintenanceType.php
+│       ├── Resident.php
+│       ├── User.php
+│       └── UserRole.php
+│   └── Providers/
+│       ├── AppServiceProvider.php
+│       ├── AuthServiceProvider.php
+│       ├── BroadcastServiceProvider.php
+│       ├── EventServiceProvider.php
+│       └── RouteServiceProvider.php
+├── bootstrap/
+│   ├── app.php
+│   └── cache/
+│       └── .gitignore
+├── config/
+│   ├── app.php
+│   ├── auth.php
+│   ├── broadcasting.php
+│   ├── cache.php
+│   ├── cors.php
+│   ├── database.php
+│   ├── filesystems.php
+│   ├── hashing.php
+│   ├── logging.php
+│   ├── mail.php
+│   ├── queue.php
+│   ├── sanctum.php
+│   ├── services.php
+│   ├── session.php
+│   └── view.php
+├── database/
+│   ├── .gitignore
+│   ├── factories/
+│   │   └── UserFactory.php
+│   ├── migrations/
+│   └── seeders/
+│       ├── DatabaseSeeder.php
+│       └── UserRoleSeeder.php
+├── public/
+│   ├── .htaccess
+│   ├── favicon.ico
+│   ├── index.php
+│   ├── robots.txt
+│   └── assets/
+│       ├── img/
+│       │   ├── 1.jpg
+│       │   ├── 2.jpg
+│       │   ├── 3.jpg
+│       │   └── 4.jpg
+│       │   └── reg.jpeg
+│       └── plugins/
+│           
+├── resources/
+│   ├── css/
+│   │   └── app.css
+│   ├── js/
+│   │   ├── app.js
+│   │   └── bootstrap.js
+│   └── views/
+│       ├── landing.blade.php
+│       ├── welcome.blade.php
+│       ├── addash/
+│       ├── admin_maintenance/
+│       ├── apartments/
+│       ├── auth/
+│       ├── change_password/
+│       ├── layer/
+│       ├── maintenance/
+│       ├── profile_update/
+│       ├── report/
+│       ├── resdash/
+│       └── users/
+├── routes/
+│   ├── api.php
+│   ├── channels.php
+│   ├── console.php
+│   └── web.php
+├── storage/
+│   ├── app/
+│   │   └── .gitignore
+│   ├── framework/
+│   │   ├── .gitignore
+│   │   ├── cache/
+│   │   ├── sessions/
+│   │   ├── testing/
+│   │   └── views/
+│   └── logs/
+│       └── .gitignore
+└── tests/
+    ├── CreatesApplication.php
+    ├── TestCase.php
+    └── Feature/
+        ├── ExampleTest.php
+        └── Unit/
+            └── ExampleTest.php
+```
+
+## Testing
+
+Run the test suite:
+
+```bash
+php artisan test
+```
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+For questions or support, please contact the development team.

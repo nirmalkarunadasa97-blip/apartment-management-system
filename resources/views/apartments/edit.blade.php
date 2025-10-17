@@ -16,7 +16,8 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('apartments.update', $apartment->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('apartments.update', $apartment->apartment_id) }}" method="POST" enctype="multipart/form-data">
+
                         @csrf
                         @method('PUT')
                         <div class="form-group">
