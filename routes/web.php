@@ -28,14 +28,14 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
-
-
+Route::resource('apartments', ApartmentController::class);
+Route::resource('announcements', AnnouncementController::class);
 // ============================
 // ADMIN ROUTES (role_id = 1)
 // ============================
 Route::group(['middleware' => 'auth.role_id:1'], function () {
     Route::resource('addash', AdDashController::class);
-    Route::resource('apartments', ApartmentController::class);
+
     Route::resource('report', ReportController::class);
 
     // User management
@@ -45,8 +45,6 @@ Route::group(['middleware' => 'auth.role_id:1'], function () {
     // Residents management
     Route::resource('residents', ResidentDashController::class);
 
-    // Announcements management
-    Route::resource('announcements', AnnouncementController::class);
 });
 
 
@@ -65,8 +63,8 @@ Route::group(['middleware' => 'auth.role_id:2'], function () {
 // ============================
 Route::group(['middleware' => 'auth.role_id:3'], function () {
     Route::get('/resdash', [ResidentDashController::class, 'dashboard'])->name('resdash.index');
-    Route::resource('apartments', ApartmentController::class)->only(['index', 'show']);
-    Route::resource('announcements', AnnouncementController::class);
+    //Route::resource('apartments', ApartmentController::class)->only(['index', 'show']);
+
     Route::resource('change_password', ChangePasswordController::class);
     Route::resource('profile_update', ProfileController::class);
     Route::resource('maintenance', MaintenanceController::class);
