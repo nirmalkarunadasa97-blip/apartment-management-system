@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Resident extends Model
+class Announcement extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'resident_id';
+    protected $primaryKey = 'announcement_id';
 
     protected $fillable = [
-        'contact_number',
-        'address',
-        'nic',
-        'nic_copy',
+        'title',
+        'image',
+        'expired_date',
         'user_id',
     ];
 
