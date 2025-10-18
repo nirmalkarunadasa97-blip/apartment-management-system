@@ -9,7 +9,9 @@
                         <h1>Apartment Details</h1>
                     </div>
                     <div class="col-sm-6 text-right">
+                        @if(auth()->user()->user_role_id == 1)
                         <a href="{{ route('apartments.edit', $apartment->apartment_id) }}" class="btn btn-warning">Edit</a>
+                        @endif
                         <a href="{{ route('apartments.index') }}" class="btn btn-secondary">Back to List</a>
                     </div>
                 </div>

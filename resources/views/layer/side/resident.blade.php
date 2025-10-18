@@ -19,7 +19,15 @@
                             </p>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a href="{{ route('apartments.index') }}"
+                            class="nav-link {{ Request::routeIs('apartments.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>
+                                Apartment
+                            </p>
+                        </a>
+                    </li>
 
                     @php
                         $hasApartmentApplication = \App\Models\ApartmentApplication::where('resident_id', auth()->id())

@@ -64,6 +64,9 @@ Route::group(['middleware' => 'auth.role_id:2'], function () {
 // RESIDENT ROUTES (role_id = 3)
 // ============================
 Route::group(['middleware' => 'auth.role_id:3'], function () {
+    Route::get('/resdash', [ResidentDashController::class, 'dashboard'])->name('resdash.index');
+    Route::resource('apartments', ApartmentController::class)->only(['index', 'show']);
+    Route::resource('announcements', AnnouncementController::class);
     Route::resource('change_password', ChangePasswordController::class);
     Route::resource('profile_update', ProfileController::class);
     Route::resource('maintenance', MaintenanceController::class);

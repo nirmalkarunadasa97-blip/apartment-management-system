@@ -9,7 +9,9 @@
                         <h1>Apartments</h1>
                     </div>
                     <div class="col-sm-6 text-right">
+                        @if(auth()->user()->user_role_id == 1)
                         <a href="{{ route('apartments.create') }}" class="btn btn-primary">Add Apartment</a>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Storage;
 class ResidentDashController extends Controller
 {
     /**
+     * Display the resident dashboard.
+     */
+    public function dashboard()
+    {
+        return view('resdash.index');
+    }
+
+    /**
      * Display a listing of all residents.
      */
     public function index()
