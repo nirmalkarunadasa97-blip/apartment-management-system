@@ -50,8 +50,8 @@
 
                     <!-- NEW TAB 1: Residents -->
                     <li class="nav-item">
-                        <a href="{{ route('resdash.index') }}"
-                            class="nav-link {{ Request::routeIs('resdash.*') ? 'active' : '' }}">
+                        <a href="{{ route('residents.index') }}"
+                            class="nav-link {{ Request::routeIs('residents.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Residents</p>
                         </a>
