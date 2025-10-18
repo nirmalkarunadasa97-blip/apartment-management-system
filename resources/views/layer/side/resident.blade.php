@@ -57,6 +57,56 @@
                     @endif
 
                     <li class="nav-item">
+                        @php
+                            $unreadCount = \App\Models\Chat::where('user_read', 1)
+                                ->where('user_id', auth()->id())
+                                ->count();
+                        @endphp
+                        <a href="{{ route('resident_chat.create') }}" id="chat-button"
+                            class="nav-link {{ Request::routeIs('resident_chat.create') ? 'active' : '' }}"
+                            onclick="markChatsAsRead(event)">
+                            <i class="nav-icon fas fa-comments"></i>
+                            <p>
+                                Chat @if ($unreadCount > 0)
+                                    <span class="badge badge-danger" id="unread-count">{{ $unreadCount }}</span>
+                                @endif
+                            </p>
+                        </a>
+                    </li>
+
+                    <script>
+                        function markChatsAsRead(event) {
+                            event.preventDefault(); // Prevent default link behavior
+
+                            const url = "{{ route('update_user_read_status') }}"; // Route for updating read status
+                            const chatPage = "{{ route('resident_chat.create') }}"; // Chat page route
+
+                            fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({}),
+                                })
+                                .then(response => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    }
+                                    throw new Error('Failed to update read status');
+                                })
+                                .then(() => {
+                                    window.location.href = chatPage; // Redirect to chat page
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    // Redirect to chat page even if the fetch fails
+                                    window.location.href = chatPage;
+                                });
+                        }
+                    </script>
+
+                    <li class="nav-item">
                         <a href="{{ route('change_password.edit', ['change_password' => auth()->user()->id]) }}"
                             class="nav-link {{ Request::routeIs('change_password.*') ? 'active' : '' }}">
                             <i class="fab fa-asymmetrik"></i>

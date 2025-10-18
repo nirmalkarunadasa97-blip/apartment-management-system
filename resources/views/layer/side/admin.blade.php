@@ -75,6 +75,16 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('admin_chat.index') }}"
+                            class="nav-link {{ Request::routeIs('admin_chat.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-comments"></i>
+                            <p>
+                                Chat
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('logout') }}" class="nav-link"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                             style="background-color:#ff0000; color:#ffffff">
