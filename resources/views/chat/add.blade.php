@@ -31,7 +31,7 @@
                             <form action="{{ route('resident_chat.store') }}" method="post" id="newuserform">
                                 @csrf
                                 <div class="input-group">
-                                    <input type="text" name="message" placeholder="Type details ..."
+                                    <input type="text" name="message" placeholder="Type Your Message....."
                                         class="form-control">
                                     <span class="input-group-append">
                                         <input type="hidden" name="chat_id" value="{{ $conversationId }}">
