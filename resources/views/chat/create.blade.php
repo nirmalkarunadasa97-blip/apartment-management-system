@@ -1,6 +1,14 @@
 @extends('layer.app')
 
 @section('content')
+    <style>
+        .direct-chat-primary .right>.direct-chat-text {
+            background-color: #3b597a;
+            border-color: #007bff;
+            color: #fff;
+        }
+    </style>
+
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -35,7 +43,9 @@
                                         class="form-control">
                                     <span class="input-group-append">
                                         <input type="hidden" name="chat_id" value="{{ $conversationId }}">
-                                        <button type="submit" class="btn btn-warning">Send</button>
+                                        <button type="submit" class="btn btn-info">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
                                     </span>
                                 </div>
                             </form>
