@@ -5,12 +5,16 @@ use App\Http\Controllers\AdminChatController;
 use App\Http\Controllers\AdminMaintenanceController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\ApartmentApplicationAdminontroller;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LanadinController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\ApartmentResidentController;
+use App\Http\Controllers\ApplyApartmentController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\LeaseExtentionController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
@@ -52,6 +56,7 @@ Route::group(['middleware' => 'auth.role_id:1'], function () {
 
     Route::resource('admin_chat', AdminChatController::class)->only(['index', 'create', 'store']);
     Route::put('admin_chat/{chat_id}/update-read', [AdminChatController::class, 'updateRead'])->name('admin_chat.update_read');
+    Route::resource('apply_apartment_admin', ApartmentApplicationAdminontroller::class);
 });
 
 Route::group(['middleware' => 'auth.role_id:3'], function () {
@@ -63,6 +68,10 @@ Route::group(['middleware' => 'auth.role_id:3'], function () {
 
     Route::resource('resident_chat', ResidentChatController::class)->only(['create', 'store']);
     Route::post('update_user_read_status', [ResidentChatController::class, 'updateUserReadStatus'])->name('update_user_read_status');
+
+    Route::resource('apply_apartment', ApplyApartmentController::class);
+    Route::resource('apartment_resident', ApartmentResidentController::class);
+    Route::resource('application_extention', LeaseExtentionController::class);
 });
 
 Route::group(['middleware' => 'auth.role_id:1||2'], function () {

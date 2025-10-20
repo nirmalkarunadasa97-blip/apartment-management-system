@@ -20,14 +20,26 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('apartments.index') }}"
-                            class="nav-link {{ Request::routeIs('apartments.*') ? 'active' : '' }}">
+                        <a href="{{ route('apartment_resident.index') }}"
+                            class="nav-link {{ Request::routeIs('apartment_resident.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-building"></i>
                             <p>
                                 Apartment
                             </p>
                         </a>
                     </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('apply_apartment.index') }}"
+                            class="nav-link {{ Request::routeIs('apply_apartment.*', 'application_extention.*') ? 'active' : '' }}">
+                            <i class="	fab fa-atlassian"></i>
+                            <p>
+                                Apply Apartment
+                            </p>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('announcements.index') }}"
                             class="nav-link {{ Request::routeIs('announcements.*') ? 'active' : '' }}">

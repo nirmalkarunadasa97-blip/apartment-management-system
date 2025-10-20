@@ -6,13 +6,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Apartments</h1>
+                        <h1>Apartments List</h1>
                     </div>
-                    <div class="col-sm-6 text-right">
-                        @if (auth()->user()->user_role_id == 1)
-                            <a href="{{ route('apartments.create') }}" class="btn btn-primary">Add Apartment</a>
-                        @endif
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -41,6 +37,11 @@
                                         <strong>Bathrooms:</strong> {{ $apartment->no_of_bathroom ?: 'N/A' }}<br>
                                         <strong>Rent:</strong> ₹{{ number_format($apartment->monthly_rent ?? 0, 2) }}
                                     </p>
+
+                                    <a href="{{ route('apply_apartment.create', ['apartment_id' => $apartment->apartment_id]) }}"
+                                        class="btn btn-primary">
+                                        Apply
+                                    </a>
 
                                     <a href="{{ route('apartments.show', $apartment->apartment_id) }}"
                                         class="btn btn-secondary">More
