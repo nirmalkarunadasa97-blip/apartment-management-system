@@ -11,11 +11,13 @@ use App\Http\Controllers\LanadinController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\ApartmentPaymentController;
 use App\Http\Controllers\ApartmentResidentController;
 use App\Http\Controllers\ApplyApartmentController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\LeaseExtentionController;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResidentChatController;
@@ -72,6 +74,9 @@ Route::group(['middleware' => 'auth.role_id:3'], function () {
     Route::resource('apply_apartment', ApplyApartmentController::class);
     Route::resource('apartment_resident', ApartmentResidentController::class);
     Route::resource('application_extention', LeaseExtentionController::class);
+
+    Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+    Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('payment.process');
 });
 
 Route::group(['middleware' => 'auth.role_id:1||2'], function () {
@@ -80,4 +85,8 @@ Route::group(['middleware' => 'auth.role_id:1||2'], function () {
 
 Route::group(['middleware' => 'auth.role_id:2'], function () {
     Route::put('/maintenances/{id}/done', '\App\Http\Controllers\AdminMaintenanceController@updateStatus')->name('maintenances.done');
+});
+
+Route::group(['middleware' => 'auth.role_id:1||3'], function () {
+    Route::resource('apartment_payment', ApartmentPaymentController::class);
 });
