@@ -41,6 +41,6 @@ class Apartment extends Model
 
     public function payments()
     {
-        return $this->hasMany(Payment::class, 'apartment_id', 'apartment_id');
+        return $this->hasMany(Payment::class, 'apartment_id');
     }
 }
