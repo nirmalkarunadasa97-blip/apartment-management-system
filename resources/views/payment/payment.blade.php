@@ -35,7 +35,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
-                                        <input type="hidden" name="lease_application_id"
+                                        <input type="hidden" name="apartment_application_id"
                                             value="{{ $apartmentApplicationId }}">
 
                                         <input type="hidden" name="apartment_id" value="{{ $apartmentId }}">

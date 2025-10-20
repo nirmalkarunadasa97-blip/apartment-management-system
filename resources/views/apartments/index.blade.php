@@ -51,7 +51,9 @@
                     @endforeach
                     @if ($apartments->isEmpty())
                         <div class="col-12">
-                            <p class="text-center">No apartments found.</p>
+                            <div class="alert alert-info" role="alert"><i class="fas fa-info-circle"></i>
+                                No apartments found.
+                            </div>
                         </div>
                     @endif
                 </div>
