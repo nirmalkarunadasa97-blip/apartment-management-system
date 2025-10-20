@@ -50,7 +50,7 @@
                                 <div class="row">
                                     @foreach($apartment->images as $image)
                                         <div class="col-md-3 mb-3">
-                                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="{{ $image->image_name }}" style="max-width: 100%; height: 150px; object-fit: cover;">
+                                            <img src="{{ asset('storage/' . $image->image_url) }}" alt="{{ $image->image_name }}" style="max-width: 100%; height: 150px; object-fit: cover;">
                                             <p>{{ $image->image_name }}</p>
                                         </div>
                                     @endforeach

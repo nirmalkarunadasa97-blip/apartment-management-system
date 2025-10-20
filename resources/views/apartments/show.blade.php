@@ -26,7 +26,7 @@
                             <div class="row">
                                 @foreach ($apartment->images as $image)
                                     <div class="col-md-4 mb-3">
-                                        <img src="{{ asset('storage/' . $image->image_path) }}"
+                                        <img src="{{ asset('storage/' . $image->image_url) }}"
                                             alt="{{ $image->image_name }}"
                                             style="max-width: 100%; height: 200px; object-fit: cover;">
                                     </div>
