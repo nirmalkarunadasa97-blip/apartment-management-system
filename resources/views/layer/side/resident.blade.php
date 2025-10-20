@@ -118,6 +118,25 @@
                         }
                     </script>
 
+                    @php
+                        $hasAppartmentApplication = \App\Models\ApartmentApplication::where('resident_id', auth()->id())
+                            ->where('status', 2)
+                            ->exists();
+                    @endphp
+
+                    @if ($hasAppartmentApplication)
+                        <li class="nav-item">
+                            <a href="{{ route('apartment_payment.index') }}"
+                                class="nav-link {{ Request::routeIs('apartment_payment.*') ? 'active' : '' }}">
+                                <i class="fab fa-amazon-pay"></i>
+                                <p>
+                                    Payment
+                                </p>
+                            </a>
+                        </li>
+                    @endif
+
+
                     <li class="nav-item">
                         <a href="{{ route('change_password.edit', ['change_password' => auth()->user()->id]) }}"
                             class="nav-link {{ Request::routeIs('change_password.*') ? 'active' : '' }}">

@@ -95,6 +95,16 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('apartment_payment.index') }}"
+                            class="nav-link {{ Request::routeIs('apartment_payment.index') ? 'active' : '' }}">
+                            <i class="fab fa-amazon-pay"></i>
+                            <p>
+                                Payment
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('logout') }}" class="nav-link"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                             style="background-color:#ff0000; color:#ffffff">
