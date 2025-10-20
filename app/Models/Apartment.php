@@ -22,8 +22,12 @@ class Apartment extends Model
     ];
 
     public function images()
-{
-    return $this->hasMany(ApartmentImage::class, 'apartment_id', 'apartment_id');
-}
+    {
+        return $this->hasMany(ApartmentImage::class, 'apartment_id', 'apartment_id');
+    }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'apartment_id');
+    }
 }

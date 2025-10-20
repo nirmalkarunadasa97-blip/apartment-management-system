@@ -31,6 +31,16 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('apply_apartment_admin.index') }}"
+                            class="nav-link {{ Request::routeIs('apply_apartment_admin.*') ? 'active' : '' }}">
+                            <i class="	fab fa-atlassian"></i>
+                            <p>
+                                Apply Apartment
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('admin_maintenance.index') }}"
                             class="nav-link {{ Request::routeIs('admin_maintenance.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-wrench"></i>
@@ -71,6 +81,26 @@
                             class="nav-link {{ Request::routeIs('report.index') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-atlas"></i>
                             <p>Report</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin_chat.index') }}"
+                            class="nav-link {{ Request::routeIs('admin_chat.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-comments"></i>
+                            <p>
+                                Chat
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('apartment_payment.index') }}"
+                            class="nav-link {{ Request::routeIs('apartment_payment.index') ? 'active' : '' }}">
+                            <i class="fab fa-amazon-pay"></i>
+                            <p>
+                                Payment
+                            </p>
                         </a>
                     </li>
 

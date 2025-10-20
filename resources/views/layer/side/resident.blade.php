@@ -20,14 +20,26 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('apartments.index') }}"
-                            class="nav-link {{ Request::routeIs('apartments.*') ? 'active' : '' }}">
+                        <a href="{{ route('apartment_resident.index') }}"
+                            class="nav-link {{ Request::routeIs('apartment_resident.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-building"></i>
                             <p>
                                 Apartment
                             </p>
                         </a>
                     </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('apply_apartment.index') }}"
+                            class="nav-link {{ Request::routeIs('apply_apartment.*', 'application_extention.*') ? 'active' : '' }}">
+                            <i class="	fab fa-atlassian"></i>
+                            <p>
+                                Apply Apartment
+                            </p>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('announcements.index') }}"
                             class="nav-link {{ Request::routeIs('announcements.*') ? 'active' : '' }}">
@@ -55,6 +67,75 @@
                             </a>
                         </li>
                     @endif
+
+                    <li class="nav-item">
+                        @php
+                            $unreadCount = \App\Models\Chat::where('user_read', 1)
+                                ->where('user_id', auth()->id())
+                                ->count();
+                        @endphp
+                        <a href="{{ route('resident_chat.create') }}" id="chat-button"
+                            class="nav-link {{ Request::routeIs('resident_chat.create') ? 'active' : '' }}"
+                            onclick="markChatsAsRead(event)">
+                            <i class="nav-icon fas fa-comments"></i>
+                            <p>
+                                Chat @if ($unreadCount > 0)
+                                    <span class="badge badge-danger" id="unread-count">{{ $unreadCount }}</span>
+                                @endif
+                            </p>
+                        </a>
+                    </li>
+
+                    <script>
+                        function markChatsAsRead(event) {
+                            event.preventDefault(); // Prevent default link behavior
+
+                            const url = "{{ route('update_user_read_status') }}"; // Route for updating read status
+                            const chatPage = "{{ route('resident_chat.create') }}"; // Chat page route
+
+                            fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({}),
+                                })
+                                .then(response => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    }
+                                    throw new Error('Failed to update read status');
+                                })
+                                .then(() => {
+                                    window.location.href = chatPage; // Redirect to chat page
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    // Redirect to chat page even if the fetch fails
+                                    window.location.href = chatPage;
+                                });
+                        }
+                    </script>
+
+                    @php
+                        $hasAppartmentApplication = \App\Models\ApartmentApplication::where('resident_id', auth()->id())
+                            ->where('status', 2)
+                            ->exists();
+                    @endphp
+
+                    @if ($hasAppartmentApplication)
+                        <li class="nav-item">
+                            <a href="{{ route('apartment_payment.index') }}"
+                                class="nav-link {{ Request::routeIs('apartment_payment.*') ? 'active' : '' }}">
+                                <i class="fab fa-amazon-pay"></i>
+                                <p>
+                                    Payment
+                                </p>
+                            </a>
+                        </li>
+                    @endif
+
 
                     <li class="nav-item">
                         <a href="{{ route('change_password.edit', ['change_password' => auth()->user()->id]) }}"
