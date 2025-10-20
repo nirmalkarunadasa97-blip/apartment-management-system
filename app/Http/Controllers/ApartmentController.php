@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Apartment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
@@ -13,7 +14,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::with('images')->get();
+        $apartments = Apartment::with(['images', 'user'])->get();
         return view('apartments.index', compact('apartments'));
     }
 
@@ -31,17 +32,27 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'contact_no' => 'nullable|string|max:255',
-            'no_of_bedroom' => 'nullable|integer|min:0',
-            'no_of_bathroom' => 'nullable|integer|min:0',
             'apartment_no' => 'required|string|max:255',
-            'monthly_rent' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
+            'contact_no' => 'nullable|string|max:255',
+            'no_of_bathroom' => 'nullable|integer|min:0',
+            'no_of_bedroom' => 'nullable|integer|min:0',
+            'monthly_rent' => 'nullable|numeric|min:0',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->only(['contact_no', 'no_of_bedroom', 'no_of_bathroom', 'apartment_no', 'monthly_rent', 'description']) + ['status' => 1];
+        $data = $request->only([
+            'apartment_no',
+            'description',
+            'contact_no',
+            'no_of_bathroom',
+            'no_of_bedroom',
+            'monthly_rent'
+        ]);
+
+        $data['status'] = 1;
+        $data['user_id'] = Auth::id(); // Assign current authenticated user
 
         $apartment = Apartment::create($data);
 
@@ -62,7 +73,7 @@ class ApartmentController extends Controller
      */
     public function show(string $apartment_id)
     {
-        $apartment = Apartment::with('images')->findOrFail($apartment_id);
+        $apartment = Apartment::with(['images', 'user'])->findOrFail($apartment_id);
         return view('apartments.show', compact('apartment'));
     }
 
@@ -81,18 +92,26 @@ class ApartmentController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'contact_no' => 'nullable|string|max:255',
-            'no_of_bedroom' => 'nullable|integer|min:0',
-            'no_of_bathroom' => 'nullable|integer|min:0',
             'apartment_no' => 'required|string|max:255',
-            'monthly_rent' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
+            'contact_no' => 'nullable|string|max:255',
+            'no_of_bathroom' => 'nullable|integer|min:0',
+            'no_of_bedroom' => 'nullable|integer|min:0',
+            'monthly_rent' => 'nullable|numeric|min:0',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $apartment = Apartment::findOrFail($id);
-        $data = $request->only(['contact_no', 'no_of_bedroom', 'no_of_bathroom', 'apartment_no', 'monthly_rent', 'description']);
+
+        $data = $request->only([
+            'apartment_no',
+            'description',
+            'contact_no',
+            'no_of_bathroom',
+            'no_of_bedroom',
+            'monthly_rent'
+        ]);
 
         $apartment->update($data);
 
@@ -114,6 +133,12 @@ class ApartmentController extends Controller
     public function destroy(string $id)
     {
         $apartment = Apartment::findOrFail($id);
+
+        // Delete associated images from storage
+        foreach ($apartment->images as $image) {
+            Storage::disk('public')->delete($image->image_url);
+        }
+
         $apartment->delete();
 
         return redirect()->route('apartments.index')->with('success', 'Apartment deleted successfully.');
