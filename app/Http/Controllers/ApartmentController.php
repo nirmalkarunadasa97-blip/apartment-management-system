@@ -49,8 +49,7 @@ class ApartmentController extends Controller
             foreach ($request->file('images') as $image) {
                 $imagePath = $image->store('apartments', 'public');
                 $apartment->images()->create([
-                    'image_path' => $imagePath,
-                    'image_name' => $image->getClientOriginalName(),
+                    'image_url' => $imagePath,
                 ]);
             }
         }
@@ -101,8 +100,7 @@ class ApartmentController extends Controller
             foreach ($request->file('images') as $image) {
                 $imagePath = $image->store('apartments', 'public');
                 $apartment->images()->create([
-                    'image_path' => $imagePath,
-                    'image_name' => $image->getClientOriginalName(),
+                    'image_url' => $imagePath,
                 ]);
             }
         }
