@@ -19,10 +19,7 @@
 
         <section class="content">
             <div class="container-fluid">
-                @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
-                <div class="row">
+                 <div class="row">
                     @foreach ($apartments as $apartment)
                         <div class="col-md-4 mb-4">
                             <div class="card">
