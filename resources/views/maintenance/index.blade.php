@@ -29,7 +29,7 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Flat</th>
+                                            <th>Apartment</th>
                                             <th>Maintenance Type</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -38,7 +38,7 @@
                                     <tbody>
                                         @foreach ($listdata as $data)
                                             <tr>
-                                                <td>{{ $data->apartment_id }}</td>
+                                                <td>{{ $data->apartment->apartment_no ?? 'N/A' }}</td>
                                                 <td>{{ $data->maintenanceType->type }}</td>
                                                 @if ($data->status == 1)
                                                     <td><span class="badge badge-warning">Pending</span></td>

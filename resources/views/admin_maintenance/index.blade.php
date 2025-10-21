@@ -39,7 +39,7 @@
                                         @foreach ($listdata as $data)
                                             <tr>
                                                 <td>{{ $data->user->name }}</td>
-                                                <td>{{ $data->apartment_id }}</td>
+                                                <td>{{ $data->apartment->apartment_no ?? 'N/A' }}</td>
                                                 <td>{{ $data->maintenanceType->type }}</td>
                                                 @if (auth()->user()->user_role_id == 1)
                                                     <td>{{ optional($data->staff)->name ?? '-' }}</td>

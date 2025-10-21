@@ -17,13 +17,12 @@ class AdminMaintenanceController extends Controller
     {
         if (auth()->user()->user_role_id == 1) {
 
-            $listdata = Maintenance::with(['user', 'maintenanceType'])->get();
-            // dd($listdata);
+            $listdata = Maintenance::with(['user', 'maintenanceType', 'apartment'])->get();
 
             return view('admin_maintenance.index', compact('listdata'));
         } else if (auth()->user()->user_role_id == 2) {
 
-            $listdata = Maintenance::with(['user', 'maintenanceType'])
+            $listdata = Maintenance::with(['user', 'maintenanceType', 'apartment'])
                 ->where('staff_id', auth()->user()->id)
                 ->get();
             return view('admin_maintenance.index', compact('listdata'));
