@@ -9,8 +9,9 @@
                         <h1>Apartment Details</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        @if(auth()->user()->user_role_id == 1)
-                        <a href="{{ route('apartments.edit', $apartment->apartment_id) }}" class="btn btn-warning">Edit</a>
+                        @if (auth()->user()->user_role_id == 1)
+                            <a href="{{ route('apartments.edit', $apartment->apartment_id) }}"
+                                class="btn btn-warning">Edit</a>
                         @endif
                         <a href="{{ route('apartments.index') }}" class="btn btn-secondary">Back to List</a>
                     </div>
@@ -41,7 +42,7 @@
                         <p><strong>Contact No:</strong> {{ $apartment->contact_no ?: 'N/A' }}</p>
                         <p><strong>Number of Bedrooms:</strong> {{ $apartment->no_of_bedroom ?: 'N/A' }}</p>
                         <p><strong>Number of Bathrooms:</strong> {{ $apartment->no_of_bathroom ?: 'N/A' }}</p>
-                        <p><strong>Monthly Rent:</strong> ₹{{ number_format($apartment->monthly_rent ?? 0, 2) }}</p>
+                        <p><strong>Monthly Rent:</strong> {{ number_format($apartment->monthly_rent ?? 0, 2) }}/=</p>
                         <p><strong>Description:</strong> {{ $apartment->description ?: 'N/A' }}</p>
                         <p><strong>Status:</strong> {{ $apartment->status ?: 'N/A' }}</p>
                         <p><strong>Created At:</strong> {{ $apartment->created_at->format('Y-m-d H:i:s') }}</p>

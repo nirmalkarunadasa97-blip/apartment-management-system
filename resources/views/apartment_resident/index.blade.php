@@ -23,7 +23,7 @@
                         <div class="col-md-4 mb-4">
                             <div class="card">
                                 @if ($apartment->images->count() > 0)
-                                    <img src="{{ asset('storage/' . $apartment->images->first()->image_path) }}"
+                                    <img src="{{ asset('storage/' . $apartment->images->first()->image_url) }}"
                                         class="card-img-top" alt="Apartment Photo"
                                         style="height: 200px; object-fit: cover;">
                                 @else
@@ -35,7 +35,7 @@
                                     <p class="card-text">
                                         <strong>Bedrooms:</strong> {{ $apartment->no_of_bedroom ?: 'N/A' }}<br>
                                         <strong>Bathrooms:</strong> {{ $apartment->no_of_bathroom ?: 'N/A' }}<br>
-                                        <strong>Rent:</strong> ₹{{ number_format($apartment->monthly_rent ?? 0, 2) }}
+                                        <strong>Rent:</strong> {{ number_format($apartment->monthly_rent ?? 0, 2) }}/=
                                     </p>
 
                                     <a href="{{ route('apply_apartment.create', ['apartment_id' => $apartment->apartment_id]) }}"

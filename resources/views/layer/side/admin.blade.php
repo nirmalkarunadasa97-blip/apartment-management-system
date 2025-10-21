@@ -54,7 +54,17 @@
                         <a href="{{ route('admin-users.create') }}"
                             class="nav-link {{ Request::routeIs('admin-users.create') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-user-plus"></i>
-                            <p>Register User</p>
+                            <p>Register Admin & Staff</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin_staff.index') }}"
+                            class="nav-link {{ Request::routeIs('admin_staff.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Admin & Staff Details
+                            </p>
                         </a>
                     </li>
 

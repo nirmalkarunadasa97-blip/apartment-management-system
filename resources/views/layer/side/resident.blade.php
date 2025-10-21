@@ -11,15 +11,6 @@
                     data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="{{ route('resdash.index') }}"
-                            class="nav-link {{ Request::routeIs('resdash.index') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>
-                                Dashboard
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{ route('apartment_resident.index') }}"
                             class="nav-link {{ Request::routeIs('apartment_resident.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-building"></i>
@@ -59,7 +50,7 @@
                     @if ($hasApartmentApplication)
                         <li class="nav-item">
                             <a href="{{ route('maintenance.index') }}"
-                                class="nav-link {{ Request::routeIs('maintenance.index') ? 'active' : '' }}">
+                                class="nav-link {{ Request::routeIs('maintenance.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cogs"></i>
                                 <p>
                                     Maintenance
