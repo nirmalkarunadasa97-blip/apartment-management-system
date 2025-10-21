@@ -22,16 +22,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="apartment_id">Apartment No</label>
-                                                <input type="text" name="apartment_id" class="form-control"
-                                                    id="apartment_id" value="{{ $ApartmentId }}" readonly>
-                                                @error('apartment_id')
-                                                    <small class="text-danger"> {{ $message }} </small>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                        <input type="hidden" name="apartment_id" value="{{ $ApartmentId }}">
 
                                         <div class="col-md-6">
                                             <div class="form-group">
