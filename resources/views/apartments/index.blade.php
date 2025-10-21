@@ -36,7 +36,7 @@
                                     <p class="card-text">
                                         <strong>Bedrooms:</strong> {{ $apartment->no_of_bedroom ?: 'N/A' }}<br>
                                         <strong>Bathrooms:</strong> {{ $apartment->no_of_bathroom ?: 'N/A' }}<br>
-                                        <strong>Rent:</strong> ₹{{ number_format($apartment->monthly_rent ?? 0, 2) }}
+                                        <strong>Rent:</strong> {{ number_format($apartment->monthly_rent ?? 0, 2) }}/=
                                     </p>
 
                                     <a href="{{ route('apartments.show', $apartment->apartment_id) }}"

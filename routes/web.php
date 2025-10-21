@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdDashController;
 use App\Http\Controllers\AdminChatController;
+use App\Http\Controllers\AdminDetailsController;
 use App\Http\Controllers\AdminMaintenanceController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AnnouncementController;
@@ -44,37 +45,28 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
-Route::resource('apartments', ApartmentController::class);
-Route::resource('announcements', AnnouncementController::class);
 
 Route::group(['middleware' => 'auth.role_id:1'], function () {
     Route::resource('addash', AdDashController::class);
-
     Route::resource('report', ReportController::class);
     Route::get('admin-users/create', [AdminUserController::class, 'create'])->name('admin-users.create');
     Route::post('admin-users', [AdminUserController::class, 'store'])->name('admin-users.store');
-
     Route::resource('residents', ResidentDashController::class);
-
     Route::resource('admin_chat', AdminChatController::class)->only(['index', 'create', 'store']);
     Route::put('admin_chat/{chat_id}/update-read', [AdminChatController::class, 'updateRead'])->name('admin_chat.update_read');
     Route::resource('apply_apartment_admin', ApartmentApplicationAdminontroller::class);
+    Route::resource('admin_staff', AdminDetailsController::class);
 });
 
 Route::group(['middleware' => 'auth.role_id:3'], function () {
-    Route::get('/resdash', [ResidentDashController::class, 'dashboard'])->name('resdash.index');
-
     Route::resource('change_password', ChangePasswordController::class);
     Route::resource('profile_update', ProfileController::class);
     Route::resource('maintenance', MaintenanceController::class);
-
     Route::resource('resident_chat', ResidentChatController::class)->only(['create', 'store']);
     Route::post('update_user_read_status', [ResidentChatController::class, 'updateUserReadStatus'])->name('update_user_read_status');
-
     Route::resource('apply_apartment', ApplyApartmentController::class);
     Route::resource('apartment_resident', ApartmentResidentController::class);
     Route::resource('application_extention', LeaseExtentionController::class);
-
     Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
     Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('payment.process');
 });
@@ -89,4 +81,6 @@ Route::group(['middleware' => 'auth.role_id:2'], function () {
 
 Route::group(['middleware' => 'auth.role_id:1||3'], function () {
     Route::resource('apartment_payment', ApartmentPaymentController::class);
+    Route::resource('announcements', AnnouncementController::class);
+    Route::resource('apartments', ApartmentController::class);
 });
