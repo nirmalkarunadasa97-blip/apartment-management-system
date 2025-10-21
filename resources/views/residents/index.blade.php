@@ -8,9 +8,6 @@
                     <div class="col-sm-6">
                         <h1>Residents Management</h1>
                     </div>
-                    <div class="col-sm-6 text-right">
-                        <a href="{{ route('residents.create') }}" class="btn btn-primary">Add New Resident</a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -47,24 +44,29 @@
                                                 <td>{{ $resident->address ?? 'N/A' }}</td>
                                                 <td>{{ $resident->nic ?? 'N/A' }}</td>
                                                 <td>
-                                                    @if($resident->nic_copy)
-                                                        <a href="{{ asset('storage/' . $resident->nic_copy) }}" target="_blank" class="btn btn-sm btn-info">View</a>
+                                                    @if ($resident->nic_copy)
+                                                        <a href="{{ asset('storage/' . $resident->nic_copy) }}"
+                                                            target="_blank" class="btn btn-sm btn-info">View</a>
                                                     @else
                                                         N/A
                                                     @endif
                                                 </td>
                                                 <td>{{ $resident->created_at->format('M d, Y') }}</td>
                                                 <td>
-                                                    <a href="{{ route('residents.show', $resident->resident_id) }}" class="btn btn-info btn-sm">
+                                                    <a href="{{ route('residents.show', $resident->resident_id) }}"
+                                                        class="btn btn-info btn-sm">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('residents.edit', $resident->resident_id) }}" class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <form action="{{ route('residents.destroy', $resident->resident_id) }}" method="POST" style="display:inline-block;" class="delete-resident-form" id="deleteForm{{ $resident->resident_id }}">
+
+                                                    <form action="{{ route('residents.destroy', $resident->resident_id) }}"
+                                                        method="POST" style="display:inline-block;"
+                                                        class="delete-resident-form"
+                                                        id="deleteForm{{ $resident->resident_id }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="button" class="btn btn-danger btn-sm delete-resident-btn" data-id="{{ $resident->resident_id }}">
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-sm delete-resident-btn"
+                                                            data-id="{{ $resident->resident_id }}">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
