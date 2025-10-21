@@ -12,6 +12,13 @@
                         @if (auth()->user()->user_role_id == 1)
                             <a href="{{ route('apartments.edit', $apartment->apartment_id) }}"
                                 class="btn btn-warning">Edit</a>
+
+                            <form action="{{ route('apartments.destroy', $apartment->apartment_id) }}" method="POST"
+                                style="display:inline-block;" id="deleteApartmentForm">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" id="deleteApartmentBtn" class="btn btn-danger">Delete</button>
+                            </form>
                         @endif
                         <a href="{{ route('apartments.index') }}" class="btn btn-secondary">Back to List</a>
                     </div>
@@ -49,9 +56,35 @@
                         <p><strong>Updated At:</strong> {{ $apartment->updated_at->format('Y-m-d H:i:s') }}</p>
                     </div>
                 </div>
-
-
             </div>
         </section>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteBtn = document.getElementById('deleteApartmentBtn');
+
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'Once deleted, you will not be able to recover this apartment!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('deleteApartmentForm').submit();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 @endsection

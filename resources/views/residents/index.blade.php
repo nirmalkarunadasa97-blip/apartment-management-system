@@ -17,7 +17,7 @@
 
         <section class="content">
             <div class="container-fluid">
-                
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -61,10 +61,10 @@
                                                     <a href="{{ route('residents.edit', $resident->resident_id) }}" class="btn btn-warning btn-sm">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('residents.destroy', $resident->resident_id) }}" method="POST" style="display:inline-block;">
+                                                    <form action="{{ route('residents.destroy', $resident->resident_id) }}" method="POST" style="display:inline-block;" class="delete-resident-form" id="deleteForm{{ $resident->resident_id }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this resident?')">
+                                                        <button type="button" class="btn btn-danger btn-sm delete-resident-btn" data-id="{{ $resident->resident_id }}">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
@@ -87,4 +87,35 @@
             </div>
         </section>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.delete-resident-btn');
+
+            deleteButtons.forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const residentId = this.getAttribute('data-id');
+                    const form = document.getElementById('deleteForm' + residentId);
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'Once deleted, you will not be able to recover this resident!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 @endsection
