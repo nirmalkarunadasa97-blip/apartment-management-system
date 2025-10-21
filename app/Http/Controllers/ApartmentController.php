@@ -136,7 +136,12 @@ class ApartmentController extends Controller
 
         // Delete associated images from storage
         foreach ($apartment->images as $image) {
-            Storage::disk('public')->delete($image->image_url);
+            // Check if image_url is not null and file exists before deleting
+            if ($image->image_url && Storage::disk('public')->exists($image->image_url)) {
+                Storage::disk('public')->delete($image->image_url);
+            }
+            // Delete the image record from database
+            $image->delete();
         }
 
         $apartment->delete();
